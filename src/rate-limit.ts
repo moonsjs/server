@@ -14,6 +14,12 @@ export interface RateLimiterOptions {
   windowMs: number;
   /** Sumber waktu (untuk test). Default: `Date.now`. */
   now?: () => number;
+  /**
+   * Batas jumlah kunci yang disimpan (mencegah pertumbuhan tak terbatas dari
+   * kunci palsu, mis. header IP yang dipalsukan). Default: 10_000; kunci
+   * tertua (FIFO) dievakuasi saat melewati batas.
+   */
+  maxKeys?: number;
 }
 
 export interface RateLimiter {
@@ -43,6 +49,7 @@ export function createRateLimiter(options: RateLimiterOptions): RateLimiter {
     throw new Error("[moons] createRateLimiter: `limit` dan `windowMs` harus angka positif");
   }
   const now = options.now ?? Date.now;
+  const maxKeys = options.maxKeys ?? 10_000;
   const hits = new Map<string, number[]>();
 
   return {
@@ -51,6 +58,12 @@ export function createRateLimiter(options: RateLimiterOptions): RateLimiter {
       const windowStart = time - options.windowMs;
       let timestamps = hits.get(key);
       if (timestamps === undefined) {
+        if (hits.size >= maxKeys) {
+          const oldest = hits.keys().next().value;
+          if (oldest !== undefined) {
+            hits.delete(oldest);
+          }
+        }
         timestamps = [];
         hits.set(key, timestamps);
       }
