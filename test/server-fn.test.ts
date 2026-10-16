@@ -61,7 +61,7 @@ test("serverFn tanpa konteks request → E_INTERNAL", async () => {
   }
   expect(thrown).toBeInstanceOf(MoonsError);
   expect((thrown as MoonsError).code).toBe("E_INTERNAL");
-  expect((thrown as MoonsError).format()).toContain("Saran:");
+  expect((thrown as MoonsError).format()).toContain("Suggestion:");
 });
 
 test("input tidak sesuai schema → E_RPC_INVALID_INPUT dengan format §15", async () => {
@@ -75,8 +75,8 @@ test("input tidak sesuai schema → E_RPC_INVALID_INPUT dengan format §15", asy
   const error = thrown as MoonsError;
   expect(error.code).toBe("E_RPC_INVALID_INPUT");
   expect(error.format()).toContain("[moons] E_RPC_INVALID_INPUT");
-  expect(error.format()).toContain("input tidak sesuai schema");
-  expect(error.format()).toContain("Saran:");
+  expect(error.format()).toContain("input does not match the schema");
+  expect(error.format()).toContain("Suggestion:");
 });
 
 test("output tidak sesuai schema → E_RPC_INVALID_OUTPUT file:line (exportName)", async () => {

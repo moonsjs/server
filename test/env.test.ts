@@ -31,8 +31,10 @@ test("guard runtime client → E_ENV_IN_CLIENT", () => {
     const error = thrown as MoonsError;
     expect(error.code).toBe("E_ENV_IN_CLIENT");
     expect(error.format()).toContain("[moons] E_ENV_IN_CLIENT");
-    expect(error.format()).toContain('memanggil `env("API_KEY")` di modul yang masuk client');
-    expect(error.format()).toContain("Saran:");
+    expect(error.format()).toContain(
+      '`env("API_KEY")` was called in a module that ends up in the client bundle',
+    );
+    expect(error.format()).toContain("Suggestion:");
   } finally {
     (globalThis as { process?: unknown }).process = originalProcess;
   }

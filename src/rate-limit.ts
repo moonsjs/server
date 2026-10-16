@@ -46,7 +46,7 @@ export function createRateLimiter(options: RateLimiterOptions): RateLimiter {
     !Number.isFinite(options.windowMs) ||
     options.windowMs <= 0
   ) {
-    throw new Error("[moons] createRateLimiter: `limit` dan `windowMs` harus angka positif");
+    throw new Error("[moons] createRateLimiter: `limit` and `windowMs` must be positive numbers");
   }
   const now = options.now ?? Date.now;
   const maxKeys = options.maxKeys ?? 10_000;

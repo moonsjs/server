@@ -61,7 +61,7 @@ test("di luar request → E_RESPONSE_OUTSIDE_REQUEST", () => {
     }
     expect(thrown).toBeInstanceOf(MoonsError);
     expect((thrown as MoonsError).code).toBe("E_RESPONSE_OUTSIDE_REQUEST");
-    expect((thrown as MoonsError).format()).toContain("Saran:");
+    expect((thrown as MoonsError).format()).toContain("Suggestion:");
   }
 });
 

@@ -6,31 +6,31 @@ export function invalidInputError(
   hash: string,
   location: string | undefined,
 ): MoonsError {
-  const detail = issues.length > 0 ? issues[0] : "input tidak sesuai schema";
+  const detail = issues.length > 0 ? issues[0] : "input does not match the schema";
   return new MoonsError({
     code: "E_RPC_INVALID_INPUT",
     ...(location === undefined ? {} : { location }),
-    message: `input tidak sesuai schema: ${detail}`,
-    details: "Input server function harus lolos validasi schema `input`.",
+    message: `input does not match the schema: ${detail}`,
+    details: "Server function input must pass `input` schema validation.",
     suggestions: [
-      "Periksa tipe argumen di pemanggil, atau",
-      "Perbarui schema `input`",
+      "Check the argument types at the call site, or",
+      "Update the `input` schema",
     ],
   });
 }
 
 export function invalidOutputError(issues: string[], entry: FnRegistryEntry): MoonsError {
-  const detail = issues.length > 0 ? issues[0] : "output tidak sesuai schema";
+  const detail = issues.length > 0 ? issues[0] : "output does not match the schema";
   return new MoonsError({
     code: "E_RPC_INVALID_OUTPUT",
     file: entry.file,
     line: entry.line,
     annotation: entry.exportName,
-    message: `output tidak sesuai schema: ${detail}`,
-    details: "Return value handler harus lolos validasi schema `output`.",
+    message: `output does not match the schema: ${detail}`,
+    details: "Handler return values must pass `output` schema validation.",
     suggestions: [
-      "Perbaiki return value handler, atau",
-      "Perbarui schema `output`",
+      "Fix the handler return value, or",
+      "Update the `output` schema",
     ],
   });
 }

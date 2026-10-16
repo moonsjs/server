@@ -25,9 +25,9 @@ export async function __moons_callInProcess<I = unknown, O = unknown>(
   if (entry === undefined) {
     throw new MoonsError({
       code: "E_INTERNAL",
-      message: `server function \`${hash}\` tidak ditemukan di registry`,
-      details: "Hash tidak terdaftar; modul .server.ts mungkin tidak ikut ter-build di server.",
-      suggestions: ["Pastikan modul .server.ts diimpor oleh loader/server entry", "Jalankan ulang build"],
+      message: `server function \`${hash}\` not found in the registry`,
+      details: "The hash is not registered; the .server.ts module may be missing from the server build.",
+      suggestions: ["Make sure the .server.ts module is imported by the loader/server entry", "Re-run the build"],
     });
   }
 

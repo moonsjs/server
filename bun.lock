@@ -17,7 +17,7 @@
     },
   },
   "packages": {
-    "@moonsjs/core": ["@moonsjs/core@0.1.11", "", { "dependencies": { "devalue": "^6.0.3" } }, "sha512-wyRre55KiHEeygrCMOsdxM9eIgr8IOwTjNnEJ4ZahZ9/AIYUh31VuteB5gy/jatZOsiV+Ths75H4hQlk2TNfXA=="],
+    "@moonsjs/core": ["@moonsjs/core@0.1.14", "", { "dependencies": { "devalue": "^6.0.3" } }, "sha512-Q/X8DzzUAPG6CszDM04Sq+2mH2EHQm0Ubq1b1v44iMltCmSvN2cjriACbvjOgsRxETYl8YfI/VklleVQFEmOdA=="],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 

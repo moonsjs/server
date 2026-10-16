@@ -81,7 +81,7 @@ test("tanpa x-moons → 400 E_RPC_MISSING_HEADER", async () => {
   expect(response.status).toBe(400);
   const body = await response.text();
   expect(body).toContain("[moons] E_RPC_MISSING_HEADER");
-  expect(body).toContain("Saran:");
+  expect(body).toContain("Suggestion:");
 });
 
 test("origin asing → 403 E_RPC_BAD_ORIGIN", async () => {

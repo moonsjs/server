@@ -8,11 +8,11 @@ export function env<T = string>(key: string): T {
   if (isClientRuntime()) {
     throw new MoonsError({
       code: "E_ENV_IN_CLIENT",
-      message: `memanggil \`env(${JSON.stringify(key)})\` di modul yang masuk client`,
-      details: "`env()` hanya legal di server.",
+      message: `\`env(${JSON.stringify(key)})\` was called in a module that ends up in the client bundle`,
+      details: "`env()` is server-only.",
       suggestions: [
-        "Pindahkan pemanggilan ke dalam serverFn, atau",
-        "Gunakan import.meta.env untuk nilai publik",
+        "Move the call into a serverFn, or",
+        "Use import.meta.env for public values",
       ],
     });
   }

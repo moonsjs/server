@@ -20,12 +20,12 @@ export function serverFn<
   if (hash === undefined || file === undefined) {
     throw new MoonsError({
       code: "E_INTERNAL",
-      message: "`serverFn` dipanggil tanpa meta hasil transform",
+      message: "`serverFn` was called without transform-generated meta",
       details:
-        "serverFn hanya boleh dideklarasikan di `*.server.ts` dan di-build dengan plugin `moons` (@moonsjs/vite), yang meng-inject `__hash`/`__file`.",
+        "serverFn may only be declared in `*.server.ts` files built with the `moons` plugin (@moonsjs/vite), which injects `__hash`/`__file`.",
       suggestions: [
-        "Pastikan file berekstensi `.server.ts` dan berada di dalam project",
-        "Pastikan build memakai plugin `moons()` dari @moonsjs/vite",
+        "Make sure the file has a `.server.ts` extension and lives inside the project",
+        "Make sure the build uses the `moons()` plugin from @moonsjs/vite",
       ],
     });
   }
@@ -42,12 +42,12 @@ export function serverFn<
         code: "E_INTERNAL",
         file,
         line,
-        message: "serverFn dipanggil tanpa konteks request aktif",
+        message: "serverFn was called without an active request context",
         details:
-          "Panggilan in-process membutuhkan `ctx`; runtime SSR menyediakannya per request.",
+          "In-process calls require `ctx`; the SSR runtime provides it per request.",
         suggestions: [
-          "Panggil serverFn dari loader/middleware, bukan di top-level modul",
-          "Atau gunakan `runWithContext(ctx, fn)` di tooling/test",
+          "Call serverFn from a loader/middleware, not at module top level",
+          "Or use `runWithContext(ctx, fn)` in tooling/tests",
         ],
       });
     }

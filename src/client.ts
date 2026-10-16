@@ -17,7 +17,7 @@ export function __moons_createStub<
     const inputCheck = await validateSchema(args.input, callArgs.input);
     if (!inputCheck.ok) {
       throw clientError("E_RPC_INVALID_INPUT", [
-        `input tidak sesuai schema: ${inputCheck.issues[0] ?? "tidak valid"}`,
+        `input does not match the schema: ${inputCheck.issues[0] ?? "invalid"}`,
       ]);
     }
 
@@ -45,7 +45,7 @@ export function __moons_createStub<
     const outputCheck = await validateSchema(args.output, parse(text));
     if (!outputCheck.ok) {
       throw clientError("E_RPC_INVALID_OUTPUT", [
-        `output tidak sesuai schema: ${outputCheck.issues[0] ?? "tidak valid"}`,
+        `output does not match the schema: ${outputCheck.issues[0] ?? "invalid"}`,
       ]);
     }
 

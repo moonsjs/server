@@ -42,10 +42,10 @@ export function createRpcHandler(options: RpcHandlerOptions = {}) {
         new MoonsError({
           code: "E_RPC_MISSING_HEADER",
           location,
-          message: "header `x-moons: 1` tidak ada",
-          details: "Semua RPC wajib menyertakan header ini.",
+          message: "missing `x-moons: 1` header",
+          details: "All RPC requests must include this header.",
           suggestions: [
-            "Gunakan `serverFn()` dari client, jangan manual fetch",
+            "Use `serverFn()` from the client instead of manual fetch",
           ],
         }),
         400,
@@ -58,11 +58,11 @@ export function createRpcHandler(options: RpcHandlerOptions = {}) {
         new MoonsError({
           code: "E_RPC_BAD_ORIGIN",
           location,
-          message: `Origin: ${origin} tidak cocok`,
+          message: `Origin: ${origin} does not match`,
           details:
-            "Origin request tidak sama dengan host dan tidak ada di `security.originWhitelist`.",
+            "The request origin does not match the host and is not listed in `security.originWhitelist`.",
           suggestions: [
-            "Tambahkan origin ke security.originWhitelist jika memang sah",
+            "Add the origin to security.originWhitelist if it is legitimate",
           ],
         }),
         403,
@@ -92,11 +92,11 @@ export function createRpcHandler(options: RpcHandlerOptions = {}) {
         new MoonsError({
           code: "E_RPC_INVALID_INPUT",
           location,
-          message: `payload devalue tidak valid${detail}`,
-          details: "Body request harus berupa hasil `devalue.stringify(input)`.",
+          message: `invalid devalue payload${detail}`,
+          details: "The request body must be the result of `devalue.stringify(input)`.",
           suggestions: [
-            "Gunakan `serverFn()` dari client, jangan manual",
-            "Pastikan `Content-Type: application/x-moons`",
+            "Use `serverFn()` from the client instead of a manual fetch",
+            "Make sure `Content-Type: application/x-moons`",
           ],
         }),
         400,
@@ -109,11 +109,11 @@ export function createRpcHandler(options: RpcHandlerOptions = {}) {
         new MoonsError({
           code: "E_INTERNAL",
           location,
-          message: `server function \`${hash}\` tidak ditemukan`,
-          details: "Hash tidak terdaftar di registry server.",
+          message: `server function \`${hash}\` not found`,
+          details: "The hash is not registered in the server registry.",
           suggestions: [
-            "Pastikan modul `.server.ts` ikut ter-bundle di build server",
-            "Jalankan ulang build",
+            "Make sure the `.server.ts` module is bundled into the server build",
+            "Re-run the build",
           ],
         }),
         404,
@@ -150,11 +150,11 @@ function handlerError(error: unknown, location: string): MoonsError {
   return new MoonsError({
     code: "E_INTERNAL",
     location,
-    message: isProduction ? "Terjadi kesalahan internal." : `handler error: ${message}`,
+    message: isProduction ? "Internal server error." : `handler error: ${message}`,
     details: isProduction
-      ? "Detail disembunyikan di production; periksa log server."
-      : "Handler melempar error ketika dieksekusi.",
-    suggestions: ["Periksa log server untuk detail", "Laporkan jika ini bug framework"],
+      ? "Details are hidden in production; check the server logs."
+      : "The handler threw an error while executing.",
+    suggestions: ["Check the server logs for details", "Report it if this is a framework bug"],
   });
 }
 
@@ -162,11 +162,11 @@ function bodyTooLargeError(size: number, limit: number, location: string): Moons
   return new MoonsError({
     code: "E_RPC_BODY_TOO_LARGE",
     location,
-    message: `body ${toMegabytes(size)} MB melebihi limit ${toMegabytes(limit)} MB`,
-    details: "Body melebihi `security.bodyLimitBytes`.",
+    message: `body ${toMegabytes(size)} MB exceeds the ${toMegabytes(limit)} MB limit`,
+    details: "The body exceeds `security.bodyLimitBytes`.",
     suggestions: [
-      "Kurangi ukuran payload, atau",
-      "Naikkan security.bodyLimitBytes jika memang perlu",
+      "Reduce the payload size, or",
+      "Raise `security.bodyLimitBytes` if you really need to",
     ],
   });
 }

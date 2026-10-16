@@ -72,11 +72,11 @@ export async function signCookie(
   if (typeof secret !== "string" || secret.length < 16) {
     throw new MoonsError({
       code: "E_CONFIG_INVALID",
-      message: "`secret` untuk signCookie minimal 16 karakter",
-      details: "Secret pendek mudah di-brute force — pakai nilai acak dari env().",
+      message: "`secret` for `signCookie` must be at least 16 characters",
+      details: "A short secret is easy to brute-force — use a random value from env().",
       suggestions: [
-        'Isi dari environment: `signCookie(data, env("SESSION_SECRET"))`',
-        "Buat dengan `openssl rand -base64 32`",
+        'Load it from the environment: `signCookie(data, env("SESSION_SECRET"))`',
+        "Generate one with `openssl rand -base64 32`",
       ],
     });
   }
@@ -86,9 +86,9 @@ export async function signCookie(
     if (!Number.isFinite(options.expiresIn) || options.expiresIn <= 0) {
       throw new MoonsError({
         code: "E_CONFIG_INVALID",
-        message: "`expiresIn` harus angka detik positif",
-        details: "Umur token dihitung dari waktu penandatanganan.",
-        suggestions: ["Isi mis. 60 * 60 * 24 untuk 24 jam"],
+        message: "`expiresIn` must be a positive number of seconds",
+        details: "The token lifetime is measured from the signing time.",
+        suggestions: ["Use e.g. 60 * 60 * 24 for 24 hours"],
       });
     }
     payload.exp = now() + options.expiresIn * 1000;
