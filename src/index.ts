@@ -15,6 +15,10 @@ export { createRpcHandler } from "./rpc";
 export type { RpcHandlerOptions, RpcSecurityConfig } from "./rpc";
 export type { FnRegistryEntry, ServerFn, ServerFnConfig } from "./types";
 export { validateSchema } from "./validate";
+export { signCookie, verifyCookie } from "./cookies";
+export type { SignCookieOptions, VerifyCookieOptions } from "./cookies";
+export { createRateLimiter } from "./rate-limit";
+export type { RateLimiter, RateLimiterOptions, RateLimitResult } from "./rate-limit";
 
 // Hook global untuk stub client (§7.4). Package ini hanya dimuat di server.
 globalThis.__moons_ssr = true;
