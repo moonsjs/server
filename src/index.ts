@@ -9,6 +9,7 @@ export {
 } from "./response-store";
 export { env, isClientRuntime } from "./env";
 export { appendHeader, deleteCookie, setCookie, setHeader } from "@moonsjs/core/response";
+export { CLIENT_IP_HEADER, getClientIp } from "./client-ip";
 export type { CookieOptions } from "@moonsjs/core/response";
 export type { ApiHandlerArgs, ApiMethod, ApiRouteDefinition } from "@moonsjs/core";
 export { createRpcHandler } from "./rpc";

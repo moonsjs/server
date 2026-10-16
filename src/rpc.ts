@@ -1,4 +1,4 @@
-import { MoonsError, type MoonsErrorCode } from "@moonsjs/core";
+import { DEFAULT_BODY_LIMIT_BYTES, MoonsError, type MoonsErrorCode } from "@moonsjs/core";
 import { parse, stringify } from "devalue";
 import { __moons_lookup } from "./registry";
 import { validateSchema } from "./validate";
@@ -13,7 +13,7 @@ export interface RpcHandlerOptions {
   security?: RpcSecurityConfig;
 }
 
-const DEFAULT_BODY_LIMIT_BYTES = 1_000_000;
+
 
 /**
  * Handler RPC HTTP (PRD §7.3). Dipanggil runtime (@moonsjs/vite/server) setelah
