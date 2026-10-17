@@ -1,6 +1,6 @@
 {
   "name": "@moonsjs/server",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
@@ -34,7 +34,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@moonsjs/core": "^0.2.0",
+    "@moonsjs/core": "^0.3.0",
     "@standard-schema/spec": "^1.1.0",
     "devalue": "^6.0.3"
   },
