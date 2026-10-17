@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.5.0 — 2026-10-17
+- chore: wave alignment (no source changes)
+
 All notable changes to this package. Entries mirror commit subjects;
 releases are tagged `vX.Y.Z` in the package repository.
 
